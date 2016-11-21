@@ -1,0 +1,20 @@
+<div class="list" ng-controller='UserListController'>
+	<header>
+		User List
+	</header>
+	<div id="addUser"><a class="btn" href="#/adduser">Add a user</a></div>
+	<ul class="no-bullet">
+		<li ng-repeat="user in users track by $index" class="list-item">
+			<div>
+				<a href="#/profile/{{user._id}}">{{user.name}}</a>
+				<button class='del' ng-click="del(user._id)"><i class="fa fa-minus" aria-hidden="true"></i></button>
+				<p>{{user.email}}</p>
+			</div>
+
+		</li>
+	</ul>
+</div>
+
+<script>
+
+</script>

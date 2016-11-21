@@ -14,3 +14,8 @@ function highlightThis(event) {
     alert(this.className);
     this.style.backgroundColor=backgroundColor;
 }
+function doerSort(name){
+    console.log(name.value);
+}
+//$(document).ready(main);
+

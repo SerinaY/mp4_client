@@ -1,0 +1,35 @@
+<div class="list" ng-controller='ProfileController'>
+        <h1>User Profile</h1>
+        <ul ng-if="hasUser">
+            <h3>{{user.name}}</h3>
+            <p>{{user.email}}</p>
+            <!--<p>{{user}}</p>-->
+            <h4>Pending tasks</h4>
+            <ul class="no-bullet">
+                <div class="list-item" ng-repeat="t in utasks">
+                    <p>{{t.name}}</p>
+                    <a href="#/editTask/{{t._id}}">edit task</a>
+                    <button class='del' ng-click="complete(t._id)"><i class="fa fa-check" aria-hidden="true"></i></i></button>
+
+                    <p>Deadline: {{t.deadline|date:'yyyy-MM-dd'}}</p>
+                </div>
+
+            </ul>
+
+            <button id = "showC" ng-click="show()" >Show Completed</button>
+            <ul class="no-bullet" id = "completed">
+                <div class="list-item"  ng-repeat="t in ctasks">
+                    <p>{{t.name}}</p>
+                    <p>Deadline: {{t.deadline|date:'yyyy-MM-dd'}}</p>
+                </div>
+            </ul>
+
+        <div ng-if="!hasUser">
+            <h3>{{user}}</h3>
+        </div>
+
+
+
+</div>
+
+

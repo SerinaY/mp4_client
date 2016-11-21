@@ -1,0 +1,16 @@
+<div ng-controller="AddUserController">
+    <form>
+        <div class="medium-6 columns">
+            <label>Name</label>
+            <input type="text" placeholder="Please enter your name" ng-model="name" required>
+
+        </div>
+        <div class="medium-6 columns">
+            <label >Email</label>
+            <input id="em" placeholder="and your email" ng-model="email"  name="em" type="email" required>
+
+        </div>
+        <button id='subm' ng-click="post()">Add</button>
+        <div>{{message}}</div>
+    </form>
+</div>

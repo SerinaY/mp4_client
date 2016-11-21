@@ -1,0 +1,30 @@
+<div class="addTask" ng-controller="EditTaskController">
+
+    <form>
+        <div class="medium-7 columns">
+            <label>Task Name</label>
+            <input type="text"  placeholder="task" ng-model="name" >
+
+            <label >Description</label>
+            <input type="text" ng-model="taskobj.description" ng-model="des">
+
+            <label >Select user</label>
+            <select ng-options="usr.name for usr in users" ng-model="myuser" >
+                <option ng-bind="myuser.name"></option>
+            </select>
+
+            <label >Select due date</label>
+
+            <datepicker date-format="MMMM d, y" date-month-title="selected title">
+                <input ng-model="date"  ng-bind="date"/>
+            </datepicker>
+            <p ng-bind="message"></p>
+
+        </div>
+        <div class="medium-9 columns"><button ng-click="save()">Save Changes</button></span></div>
+    </form>
+
+
+</div>
+
+

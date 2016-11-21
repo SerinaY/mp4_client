@@ -1,0 +1,47 @@
+
+<div class="list" ng-controller='TasksController'>
+  <h2>Tasks</h2>
+  <div id="filter" class="button-group">
+    <button class="button is-checked" data-filter="*">All</button>
+    <button class="button" data-filter="Completed">Completed</button>
+    <button class="button" data-filter="Pending">Pending</button>
+  </div>
+  <label>Sort</label>
+  <select id = "sorter" style="width:25%" ng-model="sortby" ng-change="update()" >
+
+    <option value="name" selected="selected">Task name</option>
+    <option value="assignedUserName">User name</option>
+    <option value="dateCreated">Date Created</option>
+    <option value="deadline">Deadline</option>
+
+  </select>
+  <select id = "order" style="width:20%" ng-change="update()" ng-model="orderby">
+
+    <option value="1" selected="selected">Asc</option>
+    <option value="-1">Desc</option>
+
+  </select>
+  <div>
+  <ul class="pagination text-center" role="navigation" aria-label="Pagination">
+    <li aria-label="Prev page" style="float:left">
+      <a id = "prev-arrow" class="disabled " ng-click="minusskip()"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+    </li>
+    <li  aria-label="Next page" style="float:right">
+      <a id = "next-arrow" ng-click="addskip()"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+    </li>
+  </ul>
+  </div>
+  <ul class="no-bullet">
+    <li ng-repeat="task in tasks track by $index" class="list-item">
+      <div>
+        <p>Task: {{task.name}}</p>
+        <button class='del' ng-click="del(task)"><i class="fa fa-minus" aria-hidden="true"></i></button>
+        <p>Assigned to: {{task.assignedUserName}}</p>
+        <p>Deadline: {{task.deadline|date:'yyyy/MM/dd'}}</p>
+
+      </div>
+
+    </li>
+    <div>{{message}}</div>
+  </ul>
+</div>

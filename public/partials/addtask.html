@@ -1,0 +1,35 @@
+<div class="addTask" ng-controller="AddTController">
+
+    <form>
+        <div class="medium-7 columns">
+            <label>Task Name  <small>required</small>
+                <input type="text" placeholder="task" ng-model="name" required>
+                <span class="form-error">
+                  Yo, you had better fill this out, it's required.
+                </span>
+            </label>
+            <label >Description
+            <input type="text" placeholder="description" ng-model="des" >
+            </label>
+            <label >Select user</label><small>required</small>
+            <select ng-options="usr.name for usr in users"ng-model="myuser"  >
+
+                 <option value="">-- choose a user --</option>
+
+            </select>
+
+            <label >Select due date</label> <small>required</small>
+
+            <datepicker date-format="MMMM d, y" date-month-title="selected title">
+                <input ng-model="date" ng-bind="date" required>
+            </datepicker>
+            <p ng-bind="message"></p>
+
+        </div>
+        <div class="medium-9 columns"><button class="button" ng-click="add()">Add</button></span></div>
+    </form>
+
+
+
+
+
