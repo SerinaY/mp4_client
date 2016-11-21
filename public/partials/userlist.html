@@ -7,7 +7,7 @@
 		<li ng-repeat="user in users track by $index" class="list-item">
 			<div>
 				<a href="#/profile/{{user._id}}">{{user.name}}</a>
-				<button class='del' ng-click="del(user._id)"><i class="fa fa-minus" aria-hidden="true"></i></button>
+				<button class='del' ng-click="del(user)"><i class="fa fa-minus" aria-hidden="true"></i></button>
 				<p>{{user.email}}</p>
 			</div>
 

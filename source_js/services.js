@@ -54,6 +54,7 @@ mp4Services.factory('Llamas', function($http, $window) {
             return $http.get(baseUrl+'/api/tasks/?where={"assignedUser": "'+userid+'", "completed": "false"}');
         },
         getT : function(taskid) {
+
             var baseUrl = $window.sessionStorage.baseurl;
             console.log(baseUrl+'/api/tasks/'+taskid);
             return $http.get(baseUrl+'/api/tasks/'+taskid);

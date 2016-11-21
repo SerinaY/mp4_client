@@ -161,7 +161,7 @@ mp4Controllers.controller('TasksController', ['$scope', 'Llamas', 'CommonData' ,
 
 mp4Controllers.controller('UserListController', ['$scope', 'Llamas',  'CommonData' ,function($scope,  Llamas, CommonData) {
 
-
+  $scope.users;
   var update = function () {
     Llamas.getUsers().success(function (data) {
       $scope.users = data.data;
@@ -172,10 +172,26 @@ mp4Controllers.controller('UserListController', ['$scope', 'Llamas',  'CommonDat
     });
   }
   update();
-  $scope.del = function (id) {
-    Llamas.deleteOne(id).success(function (data) {
+  $scope.del = function (user) {
+    Llamas.deleteOne(user._id).success(function (data) {
       //$scope.$apply();
       update();
+      var temp = user.pendingTasks;
+
+      for(var i = 0; i < temp.length; i++){
+        Llamas.getT(temp[i]).success(function (data) {
+          var task = data.data;
+          task.assignedUser = "";
+          task.assignedUserName = "unassigned";
+          Llamas.putT(task).success(function (data) {
+            console.log(data);
+          }).error(function (data) {
+            $scope.message = data.message;
+          });
+        }).error(function (data) {
+          $scope.message = data.message;
+        });
+      }
     }).error(function (data) {
       console.log("error while deleting");
     });
