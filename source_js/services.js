@@ -17,6 +17,7 @@ mp4Services.factory('Llamas', function($http, $window) {
     return {
         getUsers : function() {
             var baseUrl = $window.sessionStorage.baseurl;
+            console.log(baseUrl+'/api/users');
             return $http.get(baseUrl+'/api/users');
         },
         getTasks : function(skip,completed,query) {
@@ -31,6 +32,7 @@ mp4Services.factory('Llamas', function($http, $window) {
         },
         addOne : function(obj) {
             var baseUrl = $window.sessionStorage.baseurl;
+            console.log(baseUrl+'/api/users/',obj);
             return $http.post(baseUrl+'/api/users/',obj);
         },
         putOne : function(id,obj) {

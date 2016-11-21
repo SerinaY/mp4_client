@@ -110,25 +110,29 @@ mp4Controllers.controller('TasksController', ['$scope', 'Llamas', 'CommonData' ,
 
   }
   $scope.del = function(task){
+    console.log(task);
     Llamas.deleteT(task._id).success(function (data) {
       getTen();
     }).error(function (data) {
       $scope.tasks = data.message;
     });
-    Llamas.getOne(task.assignedUser).success(function (data) {
-      var user=data.data;
-      var idx = user.pendingTasks.indexOf(task._id);
-      if(idx > -1) {
-        user.pendingTasks.splice(idx, 1);
-        Llamas.putOne(user._id,user).success(function(data){
-          console.log(data);
-        }).error(function(){
-          console.log("err while updating from user");
-        });
-      }
-    }).error(function(data){
-      console.log("error getting the assignee");
-    });
+    if(task.assignedUser!=""&&task.assignedUser!=undefined&&task.assignedUser!=null) {
+      Llamas.getOne(task.assignedUser).success(function (data) {
+        var user = data.data;
+        console.log(user);
+        var idx = user.pendingTasks.indexOf(task._id);
+        if (idx > -1) {
+          user.pendingTasks.splice(idx, 1);
+          Llamas.putOne(user._id, user).success(function (data) {
+            console.log(data);
+          }).error(function () {
+            console.log("err while updating from user");
+          });
+        }
+      }).error(function (data) {
+        console.log("error getting the assignee");
+      });
+    }
 
   }
   $('#filter').on( 'click', 'button', function() {
