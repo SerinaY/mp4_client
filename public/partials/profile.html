@@ -7,7 +7,7 @@
             <h4>Pending tasks</h4>
             <ul class="no-bullet">
                 <div class="list-item" ng-repeat="t in utasks">
-                    <p>{{t.name}}</p>
+                    <a href="#/task/{{t._id}}">{{t.name}}</a>
                     <button id = "edit"><a href="#/editTask/{{t._id}}">edit task</a></button>
                     <button class='del' ng-click="complete(t._id)"><i class="fa fa-check" aria-hidden="true"></i></i></button>
 

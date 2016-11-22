@@ -57,6 +57,56 @@ mp4Controllers.controller('ProfileController', ['$scope', '$routeParams' ,'Llama
 
 
 }]);
+mp4Controllers.controller('TaskController', ['$scope', '$routeParams' ,'Llamas','CommonData','$filter' , function($scope, $routeParams,Llamas, CommonData,$filter) {
+  $scope.id = $routeParams._id;
+  $scope.task;
+  $scope.date;
+  $scope.create;
+  $scope.completed;
+  $scope.user;
+  $scope.hasTask = false;
+  update();
+  function update() {
+    Llamas.getT($scope.id).success(function (data) {
+      $scope.hasTask = true;
+      $scope.task = data.data;
+      $scope.date = $filter('date')($scope.task.deadline, "longDate");
+      $scope.create = $filter('date')($scope.task.dateCreated, "longDate");
+      Llamas.getOne($scope.task.assignedUser).success(function (data) {
+        $scope.user=data.data;
+      }).error(function(data){
+        console.log("error getting the assignee");
+      });
+      console.log($scope.task );
+      if($scope.task.completed)
+        $scope.completed='Done';
+      else
+        $scope.completed='Pending';
+    }).error(function (data) {
+      $scope.message = data.message;
+    });
+  }
+  $scope.complete = function (id) {
+    Llamas.getT(id).success(function (data) {
+      var curr_task = data.data;
+      if(!curr_task.completed )
+        curr_task.completed = true;
+      else
+        curr_task.completed = false;
+      Llamas.putT(curr_task).success(function (data) {
+        update();
+      }).error(function (data) {
+        $scope.message = data.message;
+      });
+
+    }).error(function (data) {
+      console.log("error while updating");
+    });
+  };
+
+}]);
+
+
 
 mp4Controllers.controller('TasksController', ['$scope', 'Llamas', 'CommonData' , function($scope, Llamas,CommonData) {
   $scope.skip = 0;
@@ -346,7 +396,7 @@ mp4Controllers.controller('EditTaskController', ['$scope' ,'$routeParams', 'Llam
   }).error(function (data) {
     $scope.message = data.message;
   });
-  $()
+
 
   $scope.save = function() {
     $scope.taskobj.name = $scope.name;
@@ -379,7 +429,7 @@ mp4Controllers.controller('EditTaskController', ['$scope' ,'$routeParams', 'Llam
     $scope.taskobj.assignedUser = $scope.myuser._id;
     $scope.taskobj.assignedUserName = $scope.myuser.name;
     Llamas.putT($scope.taskobj).success(function (data) {
-      $scope.message = "Task "+$scope.name+" added";
+      $scope.message = "Task "+$scope.name+" saved";
       $scope.taskobj= data.data;
       console.log($scope.taskobj);
 

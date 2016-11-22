@@ -1,0 +1,16 @@
+<div class="list" ng-controller="TaskController">
+    <h2>Task Detail</h2>
+    <ul ng-if="hasTask">
+        <h3>{{task.name}}</h3>
+        <p><a href = "href=#/profile/{{user._id}}"><span style="color:#147cc0;font-weight: bold">Assigned to: </span>{{task.assignedUserName}}</a></p>
+        <p><span style="color:#147cc0;font-weight: bold">Date Created: </span>{{create}}</p>
+        <p><span style="color:#147cc0;font-weight: bold">Deadline: </span>{{date}}</p>
+        <p><span style="color:#147cc0;font-weight: bold">Status: </span>{{completed}}</p>
+        <button id = "edit"><a href="#/editTask/{{task._id}}">edit task</a></button>
+        <button class='del' ng-click="complete(task._id)"><i class="fa fa-check" aria-hidden="true"></i></i></button>
+
+        <div ng-if="!hasTask">
+            <h3>{{user}}</h3>
+        </div>
+
+</div>

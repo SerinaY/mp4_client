@@ -34,6 +34,10 @@ app.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'partials/edittask.html',
     controller: 'EditTaskController'
   }).
+  when('/task/:_id', {
+    templateUrl: 'partials/task.html',
+    controller: 'TaskController'
+  }).
 
   otherwise({
     redirectTo: '/settings'
