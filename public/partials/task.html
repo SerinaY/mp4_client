@@ -2,7 +2,7 @@
     <h2>Task Detail</h2>
     <ul ng-if="hasTask">
         <h3>{{task.name}}</h3>
-        <p><a href = "href=#/profile/{{user._id}}"><span style="color:#147cc0;font-weight: bold">Assigned to: </span>{{task.assignedUserName}}</a></p>
+        <p><span style="color:#147cc0;font-weight: bold">Assigned to: </span>{{task.assignedUserName}}</p>
         <p><span style="color:#147cc0;font-weight: bold">Date Created: </span>{{create}}</p>
         <p><span style="color:#147cc0;font-weight: bold">Deadline: </span>{{date}}</p>
         <p><span style="color:#147cc0;font-weight: bold">Status: </span>{{completed}}</p>

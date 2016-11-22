@@ -33,6 +33,8 @@ mp4Controllers.controller('ProfileController', ['$scope', '$routeParams' ,'Llama
     }
   }
   function getTasks(){
+    console.log("in");
+    return;
     Llamas.getOne($scope.id).success(function (data) {
       $scope.hasUser = true;
       $scope.user = data.data;
@@ -51,6 +53,7 @@ mp4Controllers.controller('ProfileController', ['$scope', '$routeParams' ,'Llama
     }).error(function (data) {
       $scope.hasUser = false;
       $scope.user = data.message;
+
     });
   }
 
@@ -63,7 +66,6 @@ mp4Controllers.controller('TaskController', ['$scope', '$routeParams' ,'Llamas',
   $scope.date;
   $scope.create;
   $scope.completed;
-  $scope.user;
   $scope.hasTask = false;
   update();
   function update() {
@@ -72,12 +74,12 @@ mp4Controllers.controller('TaskController', ['$scope', '$routeParams' ,'Llamas',
       $scope.task = data.data;
       $scope.date = $filter('date')($scope.task.deadline, "longDate");
       $scope.create = $filter('date')($scope.task.dateCreated, "longDate");
-      Llamas.getOne($scope.task.assignedUser).success(function (data) {
+     /* Llamas.getOne($scope.task.assignedUser).success(function (data) {
         $scope.user=data.data;
       }).error(function(data){
         console.log("error getting the assignee");
       });
-      console.log($scope.task );
+      console.log($scope.task );*/
       if($scope.task.completed)
         $scope.completed='Done';
       else
