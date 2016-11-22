@@ -1,4 +1,7 @@
 <div ng-controller="AddUserController">
+    <h2>
+        Add a User
+    </h2>
     <form>
         <div class="medium-6 columns">
             <label>Name</label>
@@ -10,7 +13,7 @@
             <input id="em" placeholder="and your email" ng-model="email"  name="em" type="email" required>
 
         </div>
-        <button id='subm' ng-click="post()">Add</button>
+        <button class = "button" id='subm' ng-click="post()">Add</button>
         <div>{{message}}</div>
     </form>
 </div>

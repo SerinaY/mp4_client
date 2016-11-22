@@ -1,5 +1,5 @@
 <div class="list" ng-controller='ProfileController'>
-        <h1>User Profile</h1>
+        <h2>User Profile</h2>
         <ul ng-if="hasUser">
             <h3>{{user.name}}</h3>
             <p>{{user.email}}</p>
@@ -8,7 +8,7 @@
             <ul class="no-bullet">
                 <div class="list-item" ng-repeat="t in utasks">
                     <p>{{t.name}}</p>
-                    <a href="#/editTask/{{t._id}}">edit task</a>
+                    <button id = "edit"><a href="#/editTask/{{t._id}}">edit task</a></button>
                     <button class='del' ng-click="complete(t._id)"><i class="fa fa-check" aria-hidden="true"></i></i></button>
 
                     <p>Deadline: {{t.deadline|date:'yyyy-MM-dd'}}</p>
@@ -16,7 +16,7 @@
 
             </ul>
 
-            <button id = "showC" ng-click="show()" >Show Completed</button>
+            <div class="row"><button id = "showC" ng-click="show()" >Show Completed</button></div>
             <ul class="no-bullet" id = "completed">
                 <div class="list-item"  ng-repeat="t in ctasks">
                     <p>{{t.name}}</p>

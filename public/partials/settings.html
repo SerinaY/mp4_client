@@ -1,13 +1,16 @@
 <div class="list" ng-controller='SettingsController'>		
 	<form>
-	  <div class="row">
+
+	  <div class="row setting">
+          <h1>Welcome</h1>
           <div class="small-12 columns">
+              <label><h4>Set your api here</h4></label>
             <input value = {{url}} ng-model="url" type="text" placeholder="URL">
           </div>
       </div>
 
-    <div class="text-center">
-      <button ng-click="setUrl()" class="button tiny info">Set URL</button>
+    <div class="text-center ">
+      <button ng-click="setUrl()" class="button info">Set URL</button>
     </div>
 
     {{displayText}}

@@ -229,7 +229,9 @@ mp4Controllers.controller('AddUserController', ['$scope' ,'Llamas' , function($s
     var obj = {};
       obj['name'] = $scope.name;
       obj['email'] = $scope.email;
-      Llamas.addOne(obj).success(function () {
+    console.log(obj);
+      Llamas.addOne(obj).success(function (data) {
+        console.log(data.data);
         $scope.message = "User "+$scope.name+" added";
       }).error(function (data) {
         $scope.message = data.message;
@@ -248,7 +250,8 @@ mp4Controllers.controller('AddUserController', ['$scope' ,'Llamas' , function($s
 }]);
 mp4Controllers.controller('AddTController', ['$scope' , '$window', 'Llamas','CommonData', function($scope, $window,Llamas, CommonData) {
   //$scope.user = "Select a user";
-  $scope.date = "";
+  $scope.date;
+  $scope.name;
   $scope.message = "";
   $scope.users;
   $scope.myuser;
@@ -264,10 +267,15 @@ mp4Controllers.controller('AddTController', ['$scope' , '$window', 'Llamas','Com
   });
 
   $scope.add = function() {
+
+    if($scope.name == undefined ||$scope.date == undefined){
+      return;
+    }
+    console.log($scope.name,$scope.date,$scope.myuser);
     var obj = {};
     obj.name = $scope.name;
     obj.description = $scope.des;
-    obj.deadline = $scope.deadline;;
+    obj.deadline = $scope.date;
     obj.completed = false;
     obj.assignedUser = $scope.myuser._id;
     obj.assignedUserName = $scope.myuser.name;
@@ -281,8 +289,9 @@ mp4Controllers.controller('AddTController', ['$scope' , '$window', 'Llamas','Com
 
       Llamas.getOne($scope.myuser._id).success(function (data) {
         $scope.userobj = data.data;
-        console.log($scope.userobj.pendingTasks);
+
         $scope.userobj.pendingTasks.push($scope.taskobj._id)
+        console.log($scope.userobj);
         console.log($scope.userobj.pendingTasks);
         Llamas.putOne($scope.userobj._id, $scope.userobj).success(function (data) {
           console.log("haha",$scope.userobj._id);
@@ -308,7 +317,7 @@ mp4Controllers.controller('EditTaskController', ['$scope' ,'$routeParams', 'Llam
   $scope.date;
   $scope.message = "";
   $scope.des;
-  $scope.name
+  $scope.name;
 
   $scope.myuser={};
   //original task and person

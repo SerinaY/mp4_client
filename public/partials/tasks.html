@@ -34,9 +34,9 @@
   <ul class="no-bullet">
     <li ng-repeat="task in tasks track by $index" class="list-item">
       <div>
-        <p>Task: {{task.name}}</p>
+        <p style="font-size: 19px;font-weight: 600;color:#0e4061">{{task.name}}</p>
         <button class='del' ng-click="del(task)"><i class="fa fa-minus" aria-hidden="true"></i></button>
-        <p>Assigned to: {{task.assignedUserName}}</p>
+        <p>Assignee: {{task.assignedUserName}}</p>
         <p>Deadline: {{task.deadline|date:'yyyy/MM/dd'}}</p>
 
       </div>

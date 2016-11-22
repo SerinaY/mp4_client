@@ -1,10 +1,39 @@
 // Add any custom Sass & CSS here
 
+.button{
+  border-radius: 3px;
+  background-color: #d95552;
+}
+h1,h2,h3,h4,h5,h6{
+  font-family: $text;
+}
+.right{
+  text-align: right;
+}
+.top-bar{
+  padding-left: 100px;
+  padding-right: 50px;
+  a{
+    color: black;
+    font-family: $text;
+    float: right;
+  }
+  .button{
+    background-color: transparent;
+  }
+}
 .list{
   width:70%;
   padding: 30px;
   margin: 0 auto;
-
+  font-family: $text;
+  .setting{
+    margin-top:100px;
+  }
+  .button{
+    border-radius: 3px;
+    background-color: #d95552;
+  }
   header{
     text-align:center;
     font-size:80px;
@@ -38,8 +67,16 @@
   left:0;
   display: none;
 }
-
+#edit{
+  background-color: #22bb5b;
+  margin-left:5px;
+  a{
+    font-size:18px;
+    color:white;
+  }
+}
 #addUser{
+  text-align: right;
   width:100%;
   height:50px;
 }
@@ -63,8 +100,9 @@ input:invalid {
   border: 1px solid red;
 }
 button{
+  border-radius: 3px;
   color:white;
-  background-color: #0c4d78;
+  background-color: #d95552;
   float:right;
   padding:10px;
   right:10px;
