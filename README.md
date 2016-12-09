@@ -1,4 +1,4 @@
-# Starter files for MP4
+A server side task manager
 
 ## Setup
 Use the following commands in your vagrant development environment to get this up and running
